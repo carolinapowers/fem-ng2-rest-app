@@ -4,17 +4,19 @@ import {Widget} from './widgets-service';
 @Component({
   selector: 'widget-details',
   template: `
-  <pre>{{widget | json}}</pre>
-  {{selectedWidget | json}}
-  {{selectedWidget.name}}
+{{selectedWidget.name}}
+{{selectedWidget.description}}
+ 
   `
 })
 export class WidgetDetailsComponent {
   originalName: string;
-  selectedWidget: Widget;	
-  //@Input() widget;
-  @Input() set widget(widget: Widget){
-    if (widget) this.originalName = widget.name;
-    this.selectedWidget = Object.assign({}, widget);
+  selectedWidget: Widget;
+  
+  @Input() set widget(widgetVal: Widget){
+    if (widgetVal) this.originalName = widgetVal.name;
+    this.selectedWidget = Object.assign({}, widgetVal);
+    console.log(widgetVal);
+
   }
 }
