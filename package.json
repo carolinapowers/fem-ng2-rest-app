@@ -9,7 +9,7 @@
     "client:dev:hmr": "npm run client:dev -- --hot",
     "server": "json-server --watch server/api/db.json",
     "test": "karma start",
-    "start": "concurrent \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.1",
