@@ -8,11 +8,11 @@ import {WidgetsService, Widget} from "./widgets-service";
   template: `
   <div class="mdl-grid items">
     <div class="mdl-cell mdl-cell--6-col">
-      <widgets-list [widgets]="widgets" 
+      <widgets-list [widgets]="parentWidgets" 
         (selected)="selectWidget($event)"></widgets-list>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
-      <widget-details [widget]="selectedWidget"></widget-details>
+      <widget-details (save)="saveWidget($event)" [widget]="selectedWidget"></widget-details>
     </div>
   </div>
   `,
@@ -20,17 +20,21 @@ import {WidgetsService, Widget} from "./widgets-service";
   providers: [WidgetsService]
 })
 export class Widgets implements OnInit {
-  widgets: Widget[];
+  parentWidgets: Widget[];
   selectedWidget: Widget;
 
   constructor(private widgetsService: WidgetsService) {}
 
   ngOnInit() {
-    this.widgets = this.widgetsService.myWidgets;
+    this.parentWidgets = this.widgetsService.myWidgets;
   }
 
   selectWidget(widget) {
     this.selectedWidget = widget;
+  }
+
+  saveWidget(widget) {
+    console.log(widget);
   }
 
 }
