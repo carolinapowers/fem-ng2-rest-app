@@ -26,7 +26,11 @@ export class Widgets implements OnInit {
   constructor(private widgetsService: WidgetsService) {}
 
   ngOnInit() {
-    this.parentWidgets = this.widgetsService.myWidgets;
+    //his.parentWidgets = this.widgetsService.myWidgets;
+     this.widgetsService.getWidgets()
+      .then(widget => {
+        this.parentWidgets = widget;
+      });
   }
 
   selectWidget(widget) {

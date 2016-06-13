@@ -14,7 +14,7 @@ import {Widget} from './widgets-service';
       <h2 class="mdl-card__title-text" *ngIf="!selectedWidget.id">Create New Widget</h2>
     </div>
     <div class="mdl-card__supporting-text">
-      <form novalidate #testForm ="ngForm" (ngSubmit)="save.emit(selectedWidget)" >
+      <form novalidate  (ngSubmit)="save.emit(selectedWidget)" >
           <div class="mdl-textfield mdl-js-textfield">
             <label>Item Name</label>
             <input [(ngModel)]="selectedWidget.name"
@@ -42,6 +42,7 @@ import {Widget} from './widgets-service';
 export class WidgetDetailsComponent {
   originalName: string;
   selectedWidget: Widget;
+  widgetForm;
 
   @Input() set widget(widgetVal: Widget){
     if (widgetVal) this.originalName = widgetVal.name;
@@ -50,4 +51,8 @@ export class WidgetDetailsComponent {
   }
   @Output() save = new EventEmitter();
   @Output() cancelled = new EventEmitter();
+
+  // constructor (private _builder : FormBuilder) {
+  //   this.widgetForm 
+  // }
 }
