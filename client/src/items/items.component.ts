@@ -49,6 +49,7 @@ export class Items implements OnInit {
 
   selectItem(item: Item) {
     this.selectedItem = item;
+    console.log('item', item);
   }
 
   saveItem(item: Item) {

@@ -1,12 +1,9 @@
-import {Injectable} from '@angular/core';
-
 export interface Widget {
   id: number;
   name: string;
   description: string;
 }
 
-@Injectable()
 export class WidgetsService {
   myWidgets: Widget[] = [
     {id: 1, name: 'Widget 01', description: 'This is a description 1'},

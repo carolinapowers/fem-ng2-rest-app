@@ -9,7 +9,7 @@ import {Widgets} from './widgets/widgets.component';
   directives: [ROUTER_DIRECTIVES]
 })
 @Routes([
-  {path: '/items', component: Items},
+  {path: '/items', component: Items },
   {path: '/widgets', component: Widgets}
 ])
 export class App {
