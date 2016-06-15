@@ -38,10 +38,16 @@ import {Widget} from './widgets-service';
           <div class="mdl-textfield mdl-js-textfield">
             <label>Item Description</label>
             <input [ngFormControl]="widgetForm.controls['firstName']">
+            <span *ngIf="!widgetForm.controls['firstName'].valid">Not Valid</span>
           </div>
           <div class="mdl-textfield mdl-js-textfield">
             <label>Item Description</label>
             <input [ngFormControl]="widgetForm.controls['lastName']">
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <label>Item Description</label>
+            <input [ngFormControl]="widgetForm.controls['petsName']" #petsName="ngForm">
+            <span *ngIf="!petsName.valid">Not Valid</span>
           </div>
           <div class="mdl-card__actions">
             <button [disabled]="!widgetForm.valid" type="submit" class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
@@ -74,7 +80,8 @@ export class WidgetDetailsComponent {
   constructor (private _builder : FormBuilder) {
     this.widgetForm = this._builder.group ({
       firstName: ['', Validators.required],
-      lastName: ['Powers']
+      lastName: ['Powers'],
+      petsName: ['', Validators.required]
     })
   }
 }
