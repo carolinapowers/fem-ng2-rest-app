@@ -44,7 +44,7 @@ import {Widget} from './widgets-service';
             <input [ngFormControl]="widgetForm.controls['lastName']">
           </div>
           <div class="mdl-card__actions">
-            <button type="submit" class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
+            <button [disabled]="!widgetForm.valid" type="submit" class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
         </div>
       </form>
     </div>
