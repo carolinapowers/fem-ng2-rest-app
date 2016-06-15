@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {CORE_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, Validators } from '@angular/common';
+import {CORE_DIRECTIVES, FORM_DIRECTIVES, FormBuilder, Validators, ControlGroup } from '@angular/common';
 import {Widget} from './widgets-service';
 
 
@@ -34,15 +34,33 @@ import {Widget} from './widgets-service';
             <button type="submit" class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
         </div>
       </form>
+      <form [ngFormModel]="widgetForm" (ngSubmit)="save2.emit(widgetForm.value)">
+          <div class="mdl-textfield mdl-js-textfield">
+            <label>Item Description</label>
+            <input [ngFormControl]="widgetForm.controls['firstName']">
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <label>Item Description</label>
+            <input [ngFormControl]="widgetForm.controls['lastName']">
+          </div>
+          <div class="mdl-card__actions">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect">Save</button>
+        </div>
+      </form>
     </div>
   </div>
   `,
+  styles: [`
+    .ng-invalid {
+      border-color: red;
+    }
+  `],
   directives: [CORE_DIRECTIVES, FORM_DIRECTIVES]
 })
 export class WidgetDetailsComponent {
   originalName: string;
   selectedWidget: Widget;
-  widgetForm;
+  widgetForm: ControlGroup;
 
   @Input() set widget(widgetVal: Widget){
     if (widgetVal) this.originalName = widgetVal.name;
@@ -51,8 +69,12 @@ export class WidgetDetailsComponent {
   }
   @Output() save = new EventEmitter();
   @Output() cancelled = new EventEmitter();
+  @Output() save2 = new EventEmitter();
 
-  // constructor (private _builder : FormBuilder) {
-  //   this.widgetForm 
-  // }
+  constructor (private _builder : FormBuilder) {
+    this.widgetForm = this._builder.group ({
+      firstName: ['', Validators.required],
+      lastName: ['Powers']
+    })
+  }
 }

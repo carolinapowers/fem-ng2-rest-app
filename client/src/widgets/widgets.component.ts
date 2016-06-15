@@ -12,7 +12,7 @@ import {WidgetsService, Widget} from "./widgets-service";
         (selected)="selectWidget($event)"></widgets-list>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
-      <widget-details (save)="saveWidget($event)" [widget]="selectedWidget"></widget-details>
+      <widget-details (save)="saveWidget($event)" [widget]="selectedWidget" (save2)="save2Widget($event)"></widget-details>
     </div>
   </div>
   `,
@@ -40,5 +40,10 @@ export class Widgets implements OnInit {
   saveWidget(widget) {
     console.log(widget);
   }
+
+  save2Widget(widget) {
+    console.log(widget);
+  }
+
 
 }
